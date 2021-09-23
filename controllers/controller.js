@@ -1,6 +1,44 @@
 const {Day,Doctor,Doctorday,Specialist,User} = require("../models")
 
 class Controller{
+    static showLandingPage(req,res){
+        res.render("landingPage")
+    }
+
+    static userLogin(req,res){
+        res.render("login")
+    }
+
+    static userRegister(req,res){
+        res.render('registerUser')
+    }
+
+    static userRegisterPost(req,res){
+        let {nama,birthDate,nik,phone,email,password} = req.body
+        // console.log(req.body)
+        // res.send('terdater')
+        User.create({
+            name:nama,
+            email:email,
+            password:password,
+            birthDate:birthDate,
+            nik:nik,
+            handphone:phone
+        })
+        .then(data=>{
+            res.redirect('/login')
+        })
+        .catch(err=>{
+            if(err.name === 'SequelizeValidationError'){
+                let errMsg = err.errors.map(el => el.message)
+                res.send(errMsg)
+            }else{
+                res.send(err)
+            }
+        })
+
+    }
+
     static ShowAdminHome(req,res){
         res.render("adminHome")
     }
