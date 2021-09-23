@@ -11,12 +11,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Appointment.belongsTo(models.User)
+      Appointment.belongsTo(models.Doctor)
+      Appointment.belongsTo(models.Day)
     }
   };
   Appointment.init({
     name: DataTypes.STRING,
     UserId: DataTypes.INTEGER,
-    DoctorId: DataTypes.INTEGER
+    DoctorId: DataTypes.INTEGER,
+    DayId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Appointment',

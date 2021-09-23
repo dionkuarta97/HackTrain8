@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Add Doctor</h1>
+    <form action="/:Admin/doctors/Edit/<%= doctorData.id %>" method="POST">
+        <img src="<%= doctorData.fotoDokter %>"  width="250" height="250"><br><br>
+        <label>Name</label><br>
+        <input type="text" name="nama" value="<%= doctorData.name %>"><br>
+        <label>Foto Dokter</label><br>
+        <input type="text" name="foto" value="<%= doctorData.fotoDokter %>"><br>
+        <label>Biaya</label><br>
+        <input type="number" name="biaya" value="<%= doctorData.biaya %>"><br>
+        <label>Specialist</label><br>
+        <select name="specialist">
+            <option value="">--Select One--</option>
+            <% specialist.forEach(el=>{%>
+                <option value="<%= el.id %>" <%= el.id === doctorData.SpecialistId ? 'selected' : '' %> ><%= el.name %></option>
+            <%}) %>
+        </select>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

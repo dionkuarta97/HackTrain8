@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Doctor List</h1>
+    <a href="/:Admin/doctors/Add"><input type="submit" value="Add Doctor"></a>
+    <table border="1">
+        <tr>    
+            <th>Foto</th>
+            <th>Name</th>
+            <th>Specialist</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+        <% data.forEach(el=>{%>
+            <tr>    
+                <th><img src="<%= el.fotoDokter %>" width="50" height="50"></th>
+                <th><%= el.name %></th>
+                <th><%= el.Specialist.name %></th>
+                <th><%= el.biaya %></th>
+                <th>
+                    <a href="/:Admin/doctors/Edit/<%= el.id %>"><input type="submit" value="Edit Doctor"></a>
+                    <a href="/:Admin/doctors/<%= el.id %>"><input type="submit" value="Delete Doctor"></a>
+                </th>
+            </tr>
+        <%}) %>
+    </table>
+</body>
+</html>
