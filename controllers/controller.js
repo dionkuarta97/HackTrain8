@@ -50,6 +50,23 @@ class Controller{
             }
         })
     }
+
+    static deleteDoctor(req,res){
+        let {doctorId} = req.params
+        // console.log(req.params)
+        // res.send('deleted')
+        Doctor.destroy({
+            where:{
+                id: doctorId
+            }
+        })
+        .then(data=>{
+            res.redirect('/:Admin/doctors')
+        })
+        .catch(err=>{
+            res.send(err)
+        })
+    }
 }
 
 module.exports = Controller
