@@ -8,5 +8,13 @@ function encryptPass(value){
     // console.log(salt,hash)
 }
 
+function bcryptCheck(hash,value){
+    if(bcrypt.compareSync(hash, value)){
+        return true
+    }else{
+        return false
+    }
+}
+
 // console.log(encryptPass('Monica'))
-module.exports = encryptPass
+module.exports = {encryptPass, bcryptCheck}

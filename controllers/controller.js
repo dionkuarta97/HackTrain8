@@ -1,4 +1,5 @@
 const {Day,Doctor,Doctorday,Specialist,User} = require("../models")
+const {bcryptCheck} = require("../helper/encryptPass")
 
 class Controller{
     static showLandingPage(req,res){
@@ -8,6 +9,34 @@ class Controller{
     static userLogin(req,res){
         res.render("login")
     }
+
+    static userLoginPost(req,res){
+        let {email,password} = req.body
+
+        User.findOne({
+            where:{
+                email: email
+            }
+        })
+        .then(data=>{
+            if(data){//kalo ada yg match
+                let checked = bcryptCheck(password,data.password)
+                if(checked){
+                    console.log('monggo ke home')
+                }else{
+                    res.send('email or password not found')
+                }
+
+            }else{
+                res.send('email or password not found')
+            }
+        })
+        .catch(err=>{
+            console.log(err)
+            res.send(err)
+        })
+    }
+
 
     static userRegister(req,res){
         res.render('registerUser')
