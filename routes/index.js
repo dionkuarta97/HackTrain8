@@ -6,7 +6,7 @@ route.get('/', Controller.showLandingPage)
 
 route.get('/login', Controller.userLogin)
 
-// route.post('/login', Controller.)
+route.post('/login', Controller.userLoginPost)
 
 route.get('/register', Controller.userRegister)
 
