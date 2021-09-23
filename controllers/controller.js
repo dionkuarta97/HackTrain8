@@ -53,8 +53,7 @@ class Controller{
 
     static deleteDoctor(req,res){
         let {doctorId} = req.params
-        // console.log(req.params)
-        // res.send('deleted')
+
         Doctor.destroy({
             where:{
                 id: doctorId
@@ -65,6 +64,56 @@ class Controller{
         })
         .catch(err=>{
             res.send(err)
+        })
+    }
+
+    static editFormGet(req,res){
+        let {doctorId} = req.params
+        // console.log(doctorId)
+        // res.send("edit")
+        let doctorData = null
+        Doctor.findOne({
+            where: {
+                id: doctorId
+            }
+        })
+        .then(data=>{
+            doctorData = data
+            return Specialist.findAll()
+        })
+        .then(specialist=>{
+            res.render("editDoctor", {doctorData,specialist})
+        })
+        .catch(err=>{
+            res.send(err)
+        })
+    }
+
+    static editFormPost(req,res){
+        let {nama,foto,biaya,specialist} = req.body
+        let {doctorId} = req.params
+        // console.log(req.body,req.params)
+        // res.send("edit post")
+        Doctor.update({
+            name:nama,
+            fotoDokter:foto,
+            biaya:biaya,
+            SpecialistId: specialist
+        },{
+            where:{
+                id: doctorId
+            }
+        })
+        .then(data=>{
+            res.redirect('/:Admin/doctors')
+        })
+        .catch(err=>{
+            if(err.name === 'SequelizeValidationError'){
+                let errMsg = err.errors.map(el => el.message)
+                res.send(errMsg)
+            }else{
+                res.send(err)
+            }
         })
     }
 }

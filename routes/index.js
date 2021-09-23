@@ -12,6 +12,10 @@ route.get('/:Admin/doctors/Add', Controller.addDoctorGet)
 
 route.post('/:Admin/doctors/Add', Controller.addDoctorPost)
 
+route.get('/:Admin/doctors/Edit/:doctorId', Controller.editFormGet)
+
+route.post('/:Admin/doctors/Edit/:doctorId', Controller.editFormPost)
+
 route.get('/:Admin/doctors/:doctorId', Controller.deleteDoctor)
 
 

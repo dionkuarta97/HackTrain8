@@ -24,7 +24,7 @@
                 <th><%= el.Specialist.name %></th>
                 <th><%= el.biaya %></th>
                 <th>
-                    <a href=""><input type="submit" value="Edit Doctor"></a>
+                    <a href="/:Admin/doctors/Edit/<%= el.id %>"><input type="submit" value="Edit Doctor"></a>
                     <a href="/:Admin/doctors/<%= el.id %>"><input type="submit" value="Delete Doctor"></a>
                 </th>
             </tr>
