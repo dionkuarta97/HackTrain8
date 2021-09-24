@@ -1,0 +1,75 @@
+<%- include('./layout/head') %>
+    <%- include('./layout/navbar') %>
+        <div style="margin-top: 20px;" class="content-wrapper">
+
+            <div class="content-header">
+                <div class="container">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">
+                                <%= tittle %>
+                                    <%= data['name'] %>
+                            </h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item">
+                                    <a href="/admin">Dashboard</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/admin/jadwal_dokter">Jadwal Dokter</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    <%= tittle %>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-wrapper">
+
+                <div class="content-header">
+                    <div class="container">
+                        <div class="card">
+                            <div class="card-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Foto</th>
+                                            <th scope="col">Nama</th>
+                                            <th scope="col">Specialist</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <% for(const key in data['Doctors']) { %>
+                                                <td>
+                                                    <img src="<%= data['Doctors'][key]['fotoDokter'] %>" alt=""
+                                                        width="100">
+                                                </td>
+                                                <td>
+                                                    <%= data['Doctors'][key]['name'] %>
+                                                </td>
+                                                <td>
+                                                    <%= data['Doctors'][key]['Specialist']['name'] %>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-danger" onclick="return confirm('Yakin. . . .?')"
+                                                        href="/admin/jadwal_dokter/delete_jadwal/<%= data['id'] %>/<%= data['Doctors'][key]['id'] %>">Delete</a>
+                                                </td>
+                                        </tr>
+                                        <% } %>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include('./layout/footer') %>

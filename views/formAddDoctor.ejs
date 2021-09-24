@@ -1,29 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Add Doctor</h1>
-    <form action="/:Admin/doctors/Add" method="POST">
-        <label>Name</label><br>
-        <input type="text" name="nama"><br>
-        <label>Foto Dokter</label><br>
-        <input type="text" name="foto"><br>
-        <label>Biaya</label><br>
-        <input type="number" name="biaya"><br>
-        <label>Specialist</label><br>
-        <select name="specialist">
-            <option value="">--Select One--</option>
-            <% data.forEach(el=>{%>
-                <option value="<%= el.id %>"><%= el.name %></option>
-            <%}) %>
-        </select>
-        <br>
-        <input type="submit" value="Submit">
-    </form>
-</body>
-</html>
+<%- include('./layout/head') %>
+    <%- include('./layout/navbar') %>
+        <div style="margin-top: 20px;" class="content-wrapper">
+
+            <div class="content-header">
+                <div class="container">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">
+                                <%= tittle %>
+                            </h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item">
+                                    <a href="/Admin">Dashboard</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/Admin/doctors">List Dokter</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    <%= tittle %>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-wrapper">
+
+                <div class="content-header">
+
+                    <div align="center">
+                        <div class="container">
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <form action="/Admin/doctors/Add" method="POST">
+
+                                        <div class="form-group col-sm-6" align="left">
+                                            <label for="nama">Name</label>
+                                            <input class="form-control" type="text" id="nama" name="nama">
+                                        </div>
+
+
+                                        <div class="form-group col-sm-6" align="left">
+                                            <label for="foto">Foto Dokter</label>
+                                            <input class="form-control" type="text" id="foto" name="foto">
+                                        </div>
+
+
+                                        <div class="form-group col-sm-6" align="left">
+                                            <label for="biaya">Biaya</label>
+                                            <input type="number" class="form-control" id="biaya" name="biaya">
+                                        </div>
+
+                                        <div class="form-group col-sm-6" align="left">
+                                            <label for="specialist">Specialist</label>
+                                            <select class="form-control" id="specialist" name="specialist">
+                                                <option value="">--Select One--</option>
+                                                <% data.forEach(el=>{%>
+                                                    <option value="<%= el.id %>">
+                                                        <%= el.name %>
+                                                    </option>
+                                                    <%}) %>
+                                            </select>
+                                        </div>
+
+
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <%- include('./layout/footer') %>
