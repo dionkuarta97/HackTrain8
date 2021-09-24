@@ -1,0 +1,71 @@
+<%- include('./layout/head') %>
+    <%- include('./layout/navbar') %>
+        <div style="margin-top: 20px;" class="content-wrapper">
+
+            <div class="content-header">
+                <div class="container">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">
+                                <%= tittle %>
+                            </h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item ">
+                                    <a href="/admin">Dashboard</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    <%= tittle %>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-wrapper">
+
+                <div class="content-header">
+                    <div class="container">
+
+                        <div class="card">
+                            <div class="card-body">
+                                <a style="float: left; margin-top: 10px; margin-bottom: 20px;" type="button"
+                                    class="btn btn-primary" href="/Admin/jadwal_dokter/Add_jadwal">Tambah Jadwal <i
+                                        class="fa fa-plus"></i></a>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Hari</th>
+                                            <th scope="col">Jumlah Dokter</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <% for(const key in data) { %>
+                                                <td>
+                                                    <%= data[key].name %>
+                                                </td>
+                                                <td>
+                                                    <%= data[key]['Doctors'].length %>
+                                                </td>
+                                                <td>
+                                                    <a href="/admin/jadwal_dokter/<%= data[key]['id'] %>"
+                                                        class="btn btn-info">Detail</a>
+                                                </td>
+                                        </tr>
+                                        <% } %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <%- include('./layout/footer') %>

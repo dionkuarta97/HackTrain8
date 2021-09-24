@@ -1,20 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Login Page</h1>
-    <form action="/login" method="POST">
-        <label>Email</label><br>
-        <input type="text" name="email"><br>
-        <label>Password</label><br>
-        <input type="text" name="password"><br>
-        <input type="submit" value="Login"><br> <br>
-        <a href="/register">Register</a>
-    </form>
-</body>
-</html>
+<%- include('./layout/head') %>
+    <%- include('./layout/navbar') %>
+        <div style="margin-top: 20px;" class="content-wrapper">
+
+            <div class="content-header">
+                <div class="container">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">
+                                <%= tittle %>
+                            </h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item active">
+                                    <%= tittle %>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-wrapper">
+
+                <div class="content-header">
+                    <div class="container">
+
+                        <% if(message.error) { %>
+                            <div align="center">
+                                <div class="alert alert-danger col-md-6" role="alert" id="alert">
+                                    <%= message.error %>
+                                </div>
+                            </div>
+                            <% } %>
+                                <div style="margin-top: 50px;" class="col-md-12">
+                                    <div align="center">
+                                        <div class="col-md-6">
+                                            <div align="left">
+                                                <form action="/auth/cek_login" method="POST">
+                                                    <div class="form-group">
+                                                        <label for="email">Email address</label>
+                                                        <input type="email" class="form-control" id="email" name="email"
+                                                            aria-describedby="emailHelp" placeholder="Enter email">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="password">Password</label>
+                                                        <input type="password" class="form-control" id="password"
+                                                            name="password" placeholder="Password">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <select class="form-control" name="role" id="role">
+                                                            <option value="">--Hak Akses--</option>
+                                                            <option value="1">Admin</option>
+                                                            <option value="2">Pasien</option>
+                                                        </select>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary">Login</button>
+                                                    <a class="btn btn-info" href="/auth/lupa_password">Lupa Password</a>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                    </div>
+                </div>
+            </div>
+            <%- include('./layout/footer') %>

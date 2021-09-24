@@ -1,32 +1,19 @@
-const express = require("express")
-const Controller = require("../controllers/controller")
-const route = express.Router()
+const express = require("express");
+const home_controller = require("../controllers/home_controller");
+const router = express.Router();
 
-route.get('/', Controller.showLandingPage)
+const auth_route = require("./auth_route");
 
-route.get('/login', Controller.userLogin)
+const admin_route = require("./admin_route");
 
-// route.post('/login', Controller.)
+const register_route = require("./register_route");
 
-route.get('/register', Controller.userRegister)
+const [admin, user] = require("../helper/Auth");
 
-route.post('/register', Controller.userRegisterPost)
+router.get("/", home_controller.showLandingPage);
+router.use("/auth", auth_route);
+router.use("/Admin", admin, admin_route);
 
-route.get('/:Admin', Controller.ShowAdminHome)
+router.use("/register", register_route);
 
-route.get('/:Admin/doctors', Controller.showDoctorList)
-
-route.get('/:Admin/doctors/Add', Controller.addDoctorGet)
-
-route.post('/:Admin/doctors/Add', Controller.addDoctorPost)
-
-route.get('/:Admin/doctors/Edit/:doctorId', Controller.editFormGet)
-
-route.post('/:Admin/doctors/Edit/:doctorId', Controller.editFormPost)
-
-route.get('/:Admin/doctors/:doctorId', Controller.deleteDoctor)
-
-
-module.exports = route 
-
-
+module.exports = router;

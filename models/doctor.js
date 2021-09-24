@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Doctor extends Model {
     /**
@@ -11,47 +9,52 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Doctor.hasMany(models.Appointment)
-      Doctor.belongsToMany(models.Day, {through: models.DoctorDay})
-      Doctor.belongsTo(models.Specialist)
+      Doctor.hasMany(models.Appointment);
+      Doctor.belongsToMany(models.Day, {
+        through: models.DoctorDay,
+      });
+      Doctor.belongsTo(models.Specialist);
     }
-  };
-  Doctor.init({
-    name: {
-      type: DataTypes.STRING,
-      validate:{
-        notEmpty:{
-          msg: 'Name cannot be empty.'
-        }
-      }
+  }
+  Doctor.init(
+    {
+      name: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            msg: "Name cannot be empty.",
+          },
+        },
+      },
+      fotoDokter: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            msg: "Photo cannot be empty.",
+          },
+        },
+      },
+      biaya: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            msg: "Price cannot be empty.",
+          },
+        },
+      },
+      SpecialistId: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: {
+            msg: "Please Choose Speciality.",
+          },
+        },
+      },
     },
-    fotoDokter: {
-      type: DataTypes.STRING,
-      validate:{
-        notEmpty:{
-          msg: 'Photo cannot be empty.'
-        }
-      }
-    },
-    biaya: {
-      type: DataTypes.STRING,
-      validate:{
-        notEmpty:{
-          msg: 'Price cannot be empty.'
-        }
-      }
-    },
-    SpecialistId: {
-      type: DataTypes.INTEGER,
-      validate:{
-        notEmpty:{
-          msg: 'Please Choose Speciality.'
-        }
-      }
+    {
+      sequelize,
+      modelName: "Doctor",
     }
-  }, {
-    sequelize,
-    modelName: 'Doctor',
-  });
+  );
   return Doctor;
 };

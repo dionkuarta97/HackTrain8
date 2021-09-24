@@ -1,34 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Doctor List</h1>
-    <a href="/:Admin/doctors/Add"><input type="submit" value="Add Doctor"></a>
-    <table border="1">
-        <tr>    
-            <th>Foto</th>
-            <th>Name</th>
-            <th>Specialist</th>
-            <th>Price</th>
-            <th>Action</th>
-        </tr>
-        <% data.forEach(el=>{%>
-            <tr>    
-                <th><img src="<%= el.fotoDokter %>" width="50" height="50"></th>
-                <th><%= el.name %></th>
-                <th><%= el.Specialist.name %></th>
-                <th><%= el.biaya %></th>
-                <th>
-                    <a href="/:Admin/doctors/Edit/<%= el.id %>"><input type="submit" value="Edit Doctor"></a>
-                    <a href="/:Admin/doctors/<%= el.id %>"><input type="submit" value="Delete Doctor"></a>
-                </th>
-            </tr>
-        <%}) %>
-    </table>
-</body>
-</html>
+<%- include('./layout/head') %>
+    <%- include('./layout/navbar') %>
+        <div style="margin-top: 20px;" class="content-wrapper">
+
+            <div class="content-header">
+                <div class="container">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">
+                                <%= tittle %>
+                            </h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item">
+                                    <a href="/Admin">Dashboard</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    <%= tittle %>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-wrapper">
+
+                <div class="content-header">
+                    <div class="container">
+                        <div class="card">
+
+                            <div class="card-body">
+                                <a style="float: left; margin-top: 10px; margin-bottom: 20px;" type="button"
+                                    class="btn btn-primary" href="/Admin/doctors/Add">Add Doctor <i
+                                        class="fa fa-plus"></i></a>
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">No</th>
+                                            <th scope="col">Foto</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Specialist</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% let no=1 %>
+                                            <% data.forEach(el=>{%>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <%= no++ %>
+                                                    </th>
+                                                    <th><img src="<%= el.fotoDokter %>" width="100"></th>
+                                                    <th>
+                                                        <%= el.name %>
+                                                    </th>
+                                                    <th>
+                                                        <%= el.Specialist.name %>
+                                                    </th>
+                                                    <th>
+                                                        <%= el.biaya %>
+                                                    </th>
+                                                    <th>
+                                                        <a class="btn btn-warning"
+                                                            href="/Admin/doctors/Edit/<%= el.id %>">Edit Doctor</a>
+                                                        <a class="btn btn-danger" onclick="return confirm('Yakin....?')"
+                                                            href="/Admin/doctors/<%= el.id %>">Delete
+                                                            Doctor</a>
+                                                    </th>
+                                                </tr>
+                                                <%}) %>
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include('./layout/footer') %>

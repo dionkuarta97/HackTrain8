@@ -1,13 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Landing Page</h1>
-    <a href="/login"><input type="submit" value="Login"></a>
-</body>
-</html>
+<%- include('./layout/head') %>
+    <%- include('./layout/navbar') %>
+        <div style="margin-top: 20px;" class="content-wrapper">
+
+            <div class="content-header">
+                <div class="container">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">
+                                <%= tittle %>
+                            </h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item active">
+                                    <%= tittle %>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-wrapper">
+
+                <div class="content-header">
+                    <div class="container">
+
+                        <% if(message.success) { %>
+                            <div align="center">
+                                <div class="alert alert-success col-md-6" role="alert" id="alert">
+                                    <%= message.success %>
+                                </div>
+                            </div>
+                            <% } %>
+
+                                <div align="center" style="margin-top: 100px;">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div align="right">
+                                                <a class="btn-lg btn-info" href="/auth">Log In</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div align="left">
+                                                <a class="btn-lg btn-success" href="/register">Register</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <%- include('./layout/footer') %>
