@@ -1,9 +1,11 @@
+
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000
 const route = require("./routes");
 const flash = require("connect-flash");
 const session = require("express-session");
+
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
